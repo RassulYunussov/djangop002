@@ -1,0 +1,779 @@
+{% extends 'web/baseHeader.html' %}
+
+{% load material_form %}
+{% load staticfiles %}
+
+{% block base %}
+    <style>
+        .loader {
+            display: none;
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 5rem;
+            height: 5rem;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #red-button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            margin-top: 0.1rem;
+        }
+    </style>
+    <div id="video-0" class="container-fluid" style="margin-top: 2rem">
+{#        <div class="row d-flex justify-content-center">#}
+{#            <div class="col-12 d-flex justify-content-center"><h2>Видео 1</h2></div>#}
+{#        </div>#}
+        <div class="row d-flex justify-content-center">
+            <div class="video col-10 d-flex justify-content-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/AcpZWUrLtbI" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center text-content" id="text-0">
+            <div class="col-10 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-secondary video-btn shrink" style="background-color: #79b729; color: #FFF;"><b>Посмотреть следующий видеоролик</b></button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="video-1" class="container-fluid" style="margin-top: 2rem; display: none;">
+{#        <div class="row d-flex justify-content-center">#}
+{#            <div class="col-12 d-flex justify-content-center"><h2>Видео 2</h2></div>#}
+{#        </div>#}
+        <div class="row d-flex justify-content-center">
+            <div class="video col-10 d-flex justify-content-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/qrGSIEPqYxU" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center text-content" id="text-1">
+            <div class="col-10 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-secondary video-btn shrink" id="" style="background-color: #79b729; color: #FFF;"><b>Посмотреть следующий видеоролик</b></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="video-2" class="container-fluid" style="margin-top: 2rem; display: none;">
+{#        <div class="row d-flex justify-content-center">#}
+{#            <div class="col-12 d-flex justify-content-center"><h2>Видео 3</h2></div>#}
+{#        </div>#}
+        <div class="row d-flex justify-content-center">
+            <div class="video col-10 d-flex justify-content-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/yRbE5otM7Sk" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center text-content" id="text-2">
+            <div class="col-10 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-secondary video-btn shrink" id="" style="background-color: #79b729; color: #FFF;"><b>Посмотреть следующий видеоролик</b></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="video-3" class="container-fluid" style="margin-top: 2rem; display: none;">
+{#        <div class="row d-flex justify-content-center">#}
+{#            <div class="col-12 d-flex justify-content-center"><h2>Видео 4</h2></div>#}
+{#        </div>#}
+        <div class="row d-flex justify-content-center">
+            <div class="video col-10 d-flex justify-content-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/tTsnKHV53bY" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center text-content" id="text-3">
+            <div class="col-10 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-secondary video-btn shrink" id="" style="background-color: #79b729; color: #FFF;"><b>Посмотреть следующий видеоролик</b></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="video-5" class="container-fluid" style="margin-top: 2rem; display: none;">
+{#        <div class="row d-flex justify-content-center">#}
+{#            <div class="col-12 d-flex justify-content-center"><h2>Видео 5</h2></div>#}
+{#        </div>#}
+        <div class="row d-flex justify-content-center">
+            <div class="video col-10 d-flex justify-content-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/qcgSVrDAq7g" frameborder="0" allowfullscreen></iframe>
+{#                <iframe id="" width="560" height="315" src="https://www.youtube.com/embed/bJeTEDRvGVA" frameborder="0" allowfullscreen></iframe>#}
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center" id="choice-text">
+            <div class="col-10 d-flex justify-content-center">
+                <img id="red-button" class="img-responsive d-flex" style="width: 10rem; height: 10rem; cursor: pointer; border-radius: 1.5rem;" src="{% static 'media/redbutton.png' %}">
+{#                <button type="button" class="btn btn-outline-secondary video-btn" style="padding-bottom: 0; padding-top: 0; background-color: #79b729; color: #FFF; font-size: 2em">#}
+{#                    <b>Старт</b>#}
+{#                </button>#}
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="loader"></div>
+        </div>
+
+
+        <div class="row justify-content-center align-items-center" id="new-id-text">
+            <div class="col-10 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-secondary video-btn" style="background-color: #79b729; color: #FFF;">
+                    <b>ПОЛУЧИТЬ НОВЫЙ ID СПОНСОРА</b>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center align-items-center" id="no-id-text" style="cursor: none; display: none">
+            <div class="col-10 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-secondary video-btn" style="background-color: #79b729; color: #FFF; cursor: default;">
+                    <b>ID СПОНСОРА НЕ ГОТОВ, ПОДОЖДИТЕ</b>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center align-items-center text-content" id="text-5" style="margin-bottom: 0;">
+            <div id="sponsor-id-holder" class="col-9 d-flex justify-content-center">
+
+                <p class="iSetVil-btn col-6 d-flex justify-content-center">
+                    <b class="iSetVil-btn-bold btn btn-outline-secondary" id="id-regm">
+                        ID спонсора для регистрции: 909555
+                    </b>
+                    <button type="button" class="my_btn js-tooltip js-copy btn btn-outline-secondary" id="id-regm-rec" style="margin-left: 0rem" data-toggle="tooltip" data-placement="bottom" data-copy="909555" title="Скопировать">
+                    <!-- icon from google's material design library -->
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M17,9H7V7H17M17,13H7V11H17M14,17H7V15H14M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z" /></svg>
+                    </button>
+                </p>
+                {# Generate id for rendering               #}
+                <script>
+
+                    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+                    if (iOS) {
+                        $('#sponsor-id-holder').empty();
+                        $('#sponsor-id-holder').append('<b class="iSetVil-btn-bold btn-outline-secondary" id="id-regm" style="cursor: text; padding: 0.5rem 1rem; border: 1px solid #ccc; border-radius: 0.25rem; margin-bottom: 1rem; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); font-weight: 400; text-transform: uppercase; letter-spacing: 0.5px;">ID спонсора для регистрции: 909555</b>');
+                    }
+
+{#                    32#}
+
+                    function idOfThePageHolder(forServer) {
+                        myurl = location.href;
+                        id = '';
+
+                        if (forServer) {
+{#                            if (myurl.length >= 49) {#}
+{#                                id = myurl.slice(36, 42);#}
+{#                            } else {#}
+{#                                id = '909555';#}
+{#                            }#}
+                            if (myurl.length >= 39) {
+                                id = myurl.slice(26, 32);
+                            } else {
+                                id = '909555';
+                            }
+                        } else {
+                            if (myurl.length >= 35) {
+                                id = myurl.slice(22, 28);
+                            } else {
+                                id = '909555';
+                            }
+                        }
+
+                        return id;
+                    }
+
+                    function postGetSponsor() {
+                        $.post("{% url 'vilavi_sponsor_id' %}", { id: idOfThePageHolder(true) }, function( data ) {
+
+                            if (data == "") {
+
+                                $.post("{% url 'time_remaining' %}", { id: idOfThePageHolder(true) }, function(data) {
+
+
+                                    $('.timer').removeClass('is-complete');
+                                    $('.timer').attr("data-seconds-left", data['result']);
+                                    $('.timer').text("Время ожидания:\xa0");
+                                    show = false;
+
+
+                                    $('#no-id-text').fadeIn();
+                                    $('#timer').fadeIn();
+                                    $('.loader').fadeOut();
+                                    $('.timer').removeClass('is-complete');
+                                    if ($('.timer').text().length < 32) {
+                                        $('.timer').startTimer({
+                                            onComplete: function(element){
+                                                element.addClass('is-complete');
+                                            }
+                                        });
+                                        setTimeout(function () {
+                                            $('#choice-text').fadeIn();
+                                            $('#no-id-text').fadeOut();
+                                            $('#timer').fadeOut();
+                                            $('.timer').text("Время ожидания:\xa0");
+                                            $('.timer').replaceWith(
+                                                '<div class="timer col-6 d-flex justify-content-center"' +
+                                                ' style="font-size: 1rem" data-seconds-left="600"' +
+                                                '>До завершения регистрации осталось: &nbsp;</div>'
+                                            );
+
+                                        }, data['result'] * 1000);
+                                    }
+
+                                });
+
+                            } else {
+
+                                // Переход на регистрацию
+                                window.location.replace('http://otest.isetevik.com/registration?sponsor_id=' + data);
+                                secondsLeft = timer_values['registration_time']*60;
+                                $('.timer').text("На завершение регистрации осталось:\xa0");
+                                $('.timer').attr("data-seconds-left", secondsLeft.toString());
+
+                                $('#id-regm').text("ID спонсора для регистрции: " + data);
+                                $('#id-regm-rec').attr("data-copy", data);
+                                changeTextIfPhone(data);
+
+                                $('#text-reg-vil').fadeIn();
+                                $('#text-5').fadeIn();
+                                $('.loader').fadeOut();
+{#                                $('#reg-button').click(function () {#}
+{#                                    console.log('[ID]', spId);#}
+{#                                    window.location.replace('http://otest.isetevik.com/registration/' + spId);#}
+{#                                });#}
+                            }
+
+
+                        });
+                    }
+
+
+                </script>
+                {#                #}
+
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center" id="text-reg-vil">
+            <div class="col-10 d-flex justify-content-center">
+{#                <a href="" target="_blank">#}
+                    <button id="reg-button" type="button" class="btn btn-outline-secondary video-btn" style="background-color: #79b729; color: #FFF;">
+                        <b>Регистрация</b>
+                    </button>
+{#                </a>#}
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center" id="timer" style="display: none">
+            <div class="timer col-6 d-flex justify-content-center" style="font-size: 1rem" data-seconds-left=600>
+                До завершения регистрации осталось: &nbsp;
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center" id="create-room-text">
+            <div class="col-10 d-flex justify-content-center">
+{#                <a href="{% url 'user_registration' %}" target="_blank">#}
+                <a href="http://office.isetevik.com/registration/" target="_blank">
+                    <button type="button" class="btn btn-outline-secondary video-btn" style="background-color: #79b729; color: #FFF;">
+                        <b>Создать Ракету</b>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+    <script type="text/javascript">
+
+
+{#        timer_values = {"registration_time": 10, "inactive_time": 10};#}
+        timer_values = {};
+        $.get("{% url 'timer_values' %}", function(data){
+            timer_values = data;
+        });
+
+
+        changeTextIfPhone("");
+        var show = false;
+
+
+        function locationVideoProduction() {
+            myurl = location.href;
+            if ( myurl.length == 41 ) {
+                var targetVideo = location.href.slice(39, 40);
+                console.log(targetVideo);
+                if (targetVideo != "") {
+                    id = myurl.slice(26, 32);
+                    Cookies.set('sponsor', id);
+                    if (targetVideo >= 1 && targetVideo <= 6) {
+                        console.log(targetVideo != 5)
+                        if (targetVideo != 5) {
+                            targetVideo = targetVideo - 1
+                        }
+                        Cookies.set('video', targetVideo);
+                        if (id != "909555") {
+                            location.href = location.href.slice(0, 39);
+                        } else {
+                            location.href = location.href.replace(location.href.slice(25, 32), '').slice(0, 39);
+                        }
+                    }
+
+                }
+            } else if ( myurl.length == 39 ) {
+
+                id = myurl.slice(26, 32);
+                Cookies.set('sponsor', id);
+
+
+            } else if ( myurl.length == 34 ) {
+                var targetVideo = location.href.slice(32, 33);
+                if (targetVideo != "") {
+                    if (targetVideo >= 1 && targetVideo <= 6) {
+                        console.log(targetVideo != 5)
+                        if (targetVideo != 5){
+                            targetVideo = targetVideo - 1
+                        }
+                        Cookies.set('video', targetVideo);
+                        location.href = location.href.slice(0, 32);
+                    }
+
+                }
+            } else if ( myurl.length == 32 ) {
+                if ( Cookies.get('sponsor') != '' && Cookies.get('sponsor') != undefined ) {
+                    var sponsorID = Cookies.get('sponsor');
+                    url_list = myurl.split('/');
+                    url_list.splice(3, 0, sponsorID);
+                    res_url = url_list.join('/');
+                    Cookies.set('sponsor', '');
+                    location.href = res_url;
+
+                }
+            }
+        }
+
+
+        function locationVideo() {
+            myurl = location.href;
+
+
+            if ( myurl.length == 37 ) {
+                var targetVideo = location.href.slice(35, 36);
+                if (targetVideo != "") {
+                    id = myurl.slice(22, 28);
+                    if (targetVideo >= 1 && targetVideo <= 6) {
+                        console.log(targetVideo != 5)
+                        if (targetVideo != 5){
+                            targetVideo = targetVideo - 1
+                        }
+                        Cookies.set('video', targetVideo);
+                        if (id != "909555") {
+                            Cookies.set('sponsor', id);
+                            location.href = location.href.slice(0, 35);
+                        } else {
+                            location.href = location.href.replace(location.href.slice(21, 28), '').slice(0, 35);
+                        }
+                    }
+
+                }
+            } else if ( myurl.length == 30 ) {
+                var targetVideo = location.href.slice(28, 29);
+                if (targetVideo != "") {
+                    if (targetVideo >= 1 && targetVideo <= 6) {
+                        console.log(targetVideo != 5)
+                        if (targetVideo != 5){
+                            targetVideo = targetVideo - 1
+                        }
+                        Cookies.set('video', targetVideo);
+                        location.href = location.href.slice(0, 28);
+                    }
+
+                }
+            } else if ( myurl.length == 28 ){
+                if ( Cookies.get('sponsor') != '' ) {
+                    var sponsorID = Cookies.get('sponsor');
+                    url_list = myurl.split('/');
+                    url_list.splice(3, 0, sponsorID);
+                    res_url = url_list.join('/');
+                    Cookies.set('sponsor', '');
+                    location.href = res_url;
+
+                }
+            }
+        }
+
+
+        locationVideoProduction();
+{#        locationVideoServer();#}
+{#        locationVideo();#}
+
+
+        function copyToClipboard(text, el) {
+            var copyTest = document.queryCommandSupported('copy');
+            var elOriginalText = el.attr('data-original-title');
+            var isIOSDevice = navigator.userAgent.match('/ipad|ipod|iphone/i');
+
+            if (copyTest === true) {
+                var copyTextArea = document.createElement("textarea");
+                copyTextArea.value = text;
+                document.body.appendChild(copyTextArea);
+                if (isIOSDevice) {
+                    var editable = copyTextArea.contentEditable;
+                    var readonly = copyTextArea.readOnly;
+
+                    copyTextArea.contentEditable = true;
+                    copyTextArea.readOnly = false;
+
+                    var range = document.createRange();
+                    range.selectNodeContents(copyTextArea);
+
+                    var selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+
+                    copyTextArea.setSelectionRange(0, 999999);
+                    copyTextArea.contentEditable = editable;
+                    copyTextArea.readOnly = readonly;
+
+                } else {
+                    copyTextArea.select();
+                }
+
+                try {
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'Скопировано!' : 'Не скопировалось';
+                    el.attr('data-original-title', msg).tooltip('show');
+                } catch (err) {
+                    console.log('Невозможно скопировать');
+                }
+                document.body.removeChild(copyTextArea);
+                el.attr('data-original-title', elOriginalText);
+            } else {
+                // Fallback if browser doesn't support .execCommand('copy')
+                window.prompt("Скопируйте командами: Ctrl+C or Command+C, Enter", text);
+            }
+        }
+
+        function changeTextIfPhone(sponsor_id) {
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || $(window).width() < 712) {
+                // some code..
+                $('.text-content div .shrink').text('Cледующий видеоролик');
+                $('.text-content div .shrink').css("width", ($(".video iframe").width() + 'px'));
+                $('#id-regm').text('ID для регистрции: '+sponsor_id);
+            }
+        }
+
+        $(document).ready(function(){
+            // Initialize
+            // ---------------------------------------------------------------------
+
+            // Tooltips
+            // Requires Bootstrap 3 for functionality
+            $('.js-tooltip').tooltip();
+
+            // Copy to clipboard
+            // Grab any text in the attribute 'data-copy' and pass it to the
+            // copy function
+            $('.js-copy').click(function() {
+                var text = $(this).attr('data-copy');
+                var el = $(this);
+                copyToClipboard(text, el);
+            });
+            var choice = Cookies.get('video');
+{#            console.log(typeof choice === 'undefined');#}
+{#            console.log('MY' + Cookies.get('video'));#}
+
+            if (typeof(choice) === 'undefined') {
+                choice = 0;
+            }
+
+
+            if (choice == 0) {
+
+                $("#video-0").css("margin-bottom", "7rem");
+                $("#text-0").hide();
+
+            } else if (choice == 1) {
+
+                $("#video-1").show();
+                $("#video-1").css("margin-bottom", "7rem");
+                $('html, body').animate({
+                     scrollTop: $('#video-1').offset().top
+                 }, 2000);
+
+            }else if (choice == 2) {
+
+                $("#video-1").show();
+                $("#video-2").show();
+                $("#video-2").css("margin-bottom", "7rem");
+                $('html, body').animate({
+                     scrollTop: $('#video-2').offset().top
+                 }, 4000);
+
+
+            }else if (choice == 3) {
+
+                $("#video-1").show();
+                $("#video-2").show();
+                $("#video-3").show();
+                $("#video-3").css("margin-bottom", "7rem");
+                $('html, body').animate({
+                     scrollTop: $('#video-3').offset().top
+                 }, 5000);
+
+            }else if (choice == 5) {
+                console.log("HEEEEEEEEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEE5");
+                $("#video-1").show();
+                $("#video-2").show();
+                $("#video-3").show();
+                $("#video-5").show();
+                $('#text-reg-vil').hide();
+                $('#text-5').hide();
+                $('#create-room-text').hide();
+                $('#new-id-text').hide();
+                $("#video-5").css("margin-bottom", "12rem");
+                $('html, body').animate({
+                     scrollTop: $('#video-5').offset().top
+                 }, 6000);
+
+            }
+
+
+            setTimeout(()=>$('#text-0').show(), 1500);
+
+
+            $('#text-0').click(function () {
+
+                if (Cookies.get('video') > 0) {
+                    $('html, body').animate({
+                        scrollTop: $('#video-1').offset().top
+                    }, 2000);
+                } else {
+                    $("#video-0").css("margin-bottom", "2rem");
+                    $("#video-1").show();
+                    $("#video-1").css("margin-bottom", "14rem");
+
+
+                    $('html, body').animate({
+                        scrollTop: $('#video-1').offset().top
+                    }, 2000);
+
+
+                    $('#text-1').hide();
+
+                    setTimeout(()=>$('#text-1').show(),1500);
+                    Cookies.set('video', 1, { expires: 7, path: '/' });
+                }
+
+
+            });
+
+
+
+            $('#text-1').click(function () {
+
+                if (Cookies.get('video') > 1) {
+                    $('html, body').animate({
+                        scrollTop:$('#video-2').offset().top
+                    }, 2000);
+                } else {
+                    $("#video-1").css("margin-bottom", "2rem");
+                    $("#video-2").show();
+                    $("#video-2").css("margin-bottom", "14rem");
+
+                    $('html, body').animate({
+                        scrollTop:$('#video-2').offset().top
+                    }, 2000);
+
+                    $('#text-2').hide();
+
+                    setTimeout(()=>$('#text-2').show(),1500);
+                    Cookies.set('video', 2, { expires: 7, path: '/' });
+                }
+
+            });
+
+
+
+            $('#text-2').click(function () {
+
+                if (Cookies.get('video') > 2) {
+                    $('html, body').animate({
+                        scrollTop:$('#video-3').offset().top
+                    }, 2000);
+                } else {
+                    $("#video-2").css("margin-bottom", "2rem");
+                    $("#video-3").show();
+                    $("#video-3").css("margin-bottom", "14rem");
+
+                    $('html, body').animate({
+                        scrollTop:$('#video-3').offset().top
+                    }, 2000);
+
+                    $('#text-3').hide();
+
+                    setTimeout(()=>$('#text-3').show(),1500);
+                    Cookies.set('video', 3, { expires: 7, path: '/' });
+                }
+
+            });
+
+
+{#            $('#text-3').click(function () {#}
+{#                if (Cookies.get('video') > 3) {#}
+{##}
+{#                    $('html, body').animate({#}
+{#                        scrollTop:$('#video-3').offset().top#}
+{#                    }, 2000);#}
+{##}
+{#                } else {#}
+{#                    $("#video-3").css("margin-bottom", "2rem");#}
+{#                    $("#video-3").show();#}
+{#                    $("#video-3").css("margin-bottom", "14rem");#}
+{##}
+{#                    $('html, body').animate({#}
+{#                        scrollTop:$('#video-3').offset().top#}
+{#                    }, 2000);#}
+{##}
+{##}
+{#                    $('#text-4').hide();#}
+{##}
+{##}
+{#                    setTimeout(()=>$('#text-4').show(), 1500);#}
+{#                    Cookies.set('video', 4, { expires: 7, path: '/' });#}
+{#                }#}
+{##}
+{#            });#}
+
+            $('#text-3').click(function () {
+                if (Cookies.get('video') > 4) {
+                    $('html, body').animate({
+                        scrollTop:$('#video-5').offset().top
+                    }, 2000);
+
+                } else {
+                    $("#video-3").css("margin-bottom", "2rem");
+                    $("#video-5").show();
+                    $("#video-5").css("margin-bottom", "23rem");
+
+                    $('html, body').animate({
+                        scrollTop:$('#video-5').offset().top
+                    }, 2000);
+
+                    $('#text-reg-vil').hide();
+                    $('#text-5').hide();
+                    $('#choice-text').hide();
+                    $('#create-room-text').hide();
+                    $('#new-id-text').hide();
+
+{#                    setTimeout(()=>$('#choice-text').show(),5000);#}
+                    setTimeout(function(){
+                        $('#choice-text').show();
+                        $('html, body').animate({
+                            scrollTop:$('#video-5').offset().top
+                        }, 500);
+                    },1500);
+                    $("#video-5").css("margin-bottom", "22rem");
+                    Cookies.set('video', 5, { expires: 7, path: '/' });
+                }
+
+            });
+
+
+            $('#choice-text').click(function () {
+                 if (Cookies.get('video') > 5) {
+
+                     $('html, body').animate({
+                         scrollTop:$('#video-5').offset().top
+                     }, 2000);
+
+                 } else {
+                     $('#choice-text').fadeOut();
+                     $('.loader').fadeIn();
+                     $("#video-5").css("margin-bottom", "10rem");
+                     $('html, body').animate({
+                            scrollTop:$('#video-5').offset().top
+                     }, 500);
+
+                     postGetSponsor();
+                     $('html, body').animate({
+                        scrollTop:$('#video-5').offset().top
+                    }, 1000);
+                 }
+            });
+
+            $('#text-reg-vil').click(function () {
+                if (Cookies.get('video') > 6) {
+                    $('html, body').animate({
+                        scrollTop: $('#video-3').offset().top
+                    }, 2000);
+                } else {
+
+                    $('#timer').fadeIn();
+                    $('#timer').removeClass('is-complete');
+                    $('html, body').animate({
+                        scrollTop: $('#text-reg-vil').offset().top
+                    }, 2000);
+
+                    if ($('.timer').text().length < 44) {
+                        $('.timer').startTimer({
+                            onComplete: function(element){
+                                element.addClass('is-complete');
+                            }
+                        });
+                        setTimeout(function () {
+                            $('#create-room-text').fadeIn();
+                            $('html, body').animate({
+                                scrollTop: $('#create-room-text').offset().top
+                            }, 2000);
+                        }, 60000);
+                        setTimeout(function () {
+        {#                         document.location.href = '{% url 'new_id' %}';#}
+                            $('#create-room-text').hide();
+                            $('#timer').fadeOut();
+                            $('#text-5').hide();
+                            $('#text-reg-vil').hide();
+                            $('#new-id-text').show();
+                            //removing timer inners
+                            $('.jst-hours').remove();
+                            $('.jst-minutes').remove();
+                            $('.jst-seconds').remove();
+                            $('.jst-clearDiv').remove();
+
+                        }, timer_values['registration_time'] * 60 * 1000);
+                    }
+
+
+
+                }
+            });
+
+            $('#new-id-text').click(function () {
+                {# generate new Id function #}
+{#                $.get("{% url 'vilavi_sponsor_id' %}", function( data ) {#}
+{#                    console.log(data);#}
+{#                    $('#id-regm').text("ID спонсора для регистрции: " + data);#}
+{#                    $('#id-regm-rec').attr("data-copy", data);#}
+{#                    changeTextIfPhone(data);#}
+{#                });#}
+                {#                #}
+                postGetSponsor();
+                $('#new-id-text').fadeOut();
+{#                $('#text-reg-vil').click()#}
+            });
+
+
+
+
+            changeTextIfPhone();
+        });
+
+    </script>
+{% endblock %}

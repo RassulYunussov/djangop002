@@ -1,0 +1,100 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+    {% include 'material/includes/material_css.html' %}
+    <script src="{% static 'material/js/jquery.js' %}"></script>
+    {% include 'material/includes/material_js.html' %}
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="{% static 'js/js.cookie.js' %}"></script>
+    <script src="{% static 'js/jquery.simple.timer.js' %}"></script>
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{% static 'media/favicon-96x96.png' %}" />
+    <title>iSETEVIK</title>
+</head>
+<body>
+
+{#for not login guys#}
+
+{#    <div class="navbare">#}
+{#        <div class="row">#}
+{#            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center" id="iSetevik-logo">#}
+{#                <h1>iSETEVIK.com</h1>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="box-wrap-header">
+        {% block base %}
+        {% endblock %}
+    </div>
+
+    <div class="bottombare" style="background-color: #FFF; background-size: contain; height: 15vh; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; max-height: 101px">
+{#        <div class="row bottombare d-flex justify-content-center" style="margin-bottom: 0;">#}
+        <div id="bb-container" class="row d-flex justify-content-center align-items-center w-100 h-100" style="margin: 0;">
+
+
+            {% for record in profile %}
+
+                <div class="bot-icons col-1 d-flex justify-content-center align-items-center" style="padding-left: 1vw; padding-right: 1vw;">
+                    <a href="{{ record.ref }}" class="d-flex justify-content-center" target="_blank">
+                        <img src="{{ record.img }}" height="100%" width="100%" class="footer-icon bot-icons" style="max-height: 80px; max-width: 80px;">
+                    </a>
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+</body>
+<script>
+    if ($(window).width() > 1000) {
+        $('.bot-icons').attr("height", "60%");
+        $('.bot-icons').attr("width", "60%");
+    } else {
+        $('.bot-icons').attr("height", "100%");
+        $('.bot-icons').attr("width", "100%");
+    }
+
+    $(window).resize(function() {
+        if ($(window).width() > 1000) {
+            $('.bot-icons').attr("height", "75%");
+            $('.bot-icons').attr("width", "75%");
+        } else {
+            $('.bot-icons').attr("height", "100%");
+            $('.bot-icons').attr("width", "100%");
+        }
+    });
+
+    console.log();
+{#        console.log($(window).width());#}
+{#        function changeIconSize() {#}
+{#            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ($(window).width() < 1000)) {#}
+{#                $('.col-1').css("padding", "0.3rem");#}
+{#            }#}
+{#            else if ($(window).width() < 1000) {#}
+{#                $('.col-1').css("padding", "1rem")#}
+{#            }#}
+{#            else {#}
+{#                $('.col-1').css("padding", "2rem");#}
+{#            }#}
+{#        }#}
+{#        changeIconsSize();#}
+</script>
+</html>
