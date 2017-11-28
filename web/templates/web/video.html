@@ -229,7 +229,7 @@
                             } else {
 
                                 // Переход на регистрацию
-                                window.location.replace('http://otest.isetevik.com/registration?sponsor_id=' + data);
+                                window.location.replace('http://office.isetevik.com/registration?sponsor_id=' + data);
                                 secondsLeft = timer_values['registration_time']*60;
                                 $('.timer').text("На завершение регистрации осталось:\xa0");
                                 $('.timer').attr("data-seconds-left", secondsLeft.toString());
@@ -546,7 +546,7 @@
             }
 
 
-            setTimeout(()=>$('#text-0').show(), 1500);
+            setTimeout(()=>$('#text-0').show(), 15000);
 
 
             $('#text-0').click(function () {
@@ -568,7 +568,7 @@
 
                     $('#text-1').hide();
 
-                    setTimeout(()=>$('#text-1').show(),1500);
+                    setTimeout(()=>$('#text-1').show(),15000);
                     Cookies.set('video', 1, { expires: 7, path: '/' });
                 }
 
@@ -594,7 +594,7 @@
 
                     $('#text-2').hide();
 
-                    setTimeout(()=>$('#text-2').show(),1500);
+                    setTimeout(()=>$('#text-2').show(),15000);
                     Cookies.set('video', 2, { expires: 7, path: '/' });
                 }
 
@@ -619,7 +619,7 @@
 
                     $('#text-3').hide();
 
-                    setTimeout(()=>$('#text-3').show(),1500);
+                    setTimeout(()=>$('#text-3').show(),15000);
                     Cookies.set('video', 3, { expires: 7, path: '/' });
                 }
 
@@ -679,7 +679,7 @@
                         $('html, body').animate({
                             scrollTop:$('#video-5').offset().top
                         }, 500);
-                    },1500);
+                    },15000);
                     $("#video-5").css("margin-bottom", "22rem");
                     Cookies.set('video', 5, { expires: 7, path: '/' });
                 }
