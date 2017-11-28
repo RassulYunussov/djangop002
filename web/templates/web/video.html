@@ -229,7 +229,7 @@
                             } else {
 
                                 // Переход на регистрацию
-                                window.location.replace('http://office.isetevik.com/registration?sponsor_id=' + data);
+                                window.location.replace('http://office.isetevik.com/registration?sponsor_id=' + data); return;
                                 secondsLeft = timer_values['registration_time']*60;
                                 $('.timer').text("На завершение регистрации осталось:\xa0");
                                 $('.timer').attr("data-seconds-left", secondsLeft.toString());
